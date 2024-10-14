@@ -4,7 +4,7 @@ from Transaction import Transaction
 class Bank_account:
 
     def __init__(self,acc_type,name,email,address) -> None:
-        self.__acc_no=email
+        self.__acc_no=email.split('.')[0]
         self.__acc_type=acc_type
         self.__acc_balance=0
         self.__transactions=[]
@@ -62,10 +62,12 @@ class Bank_account:
         print(f'Account current balance: {self.__acc_balance}')
     
     def transfer(self, reciever_ac_no, amount):
+        if reciever_ac_no==self.__acc_no:
+            print('Invalid action!')
+            return
         if not self.__validate_amount(amount): return
         if not self.__bank.update_account_money(reciever_ac_no,amount):return
         self.__acc_balance-=amount
-        self.__bank.remove_money(amount)
         self.__transactions.append(Transaction().transfer(self.__acc_no,reciever_ac_no,amount))
         print(f'{amount} transfer successful to account :{reciever_ac_no}')
         self.check_balance()
@@ -93,7 +95,6 @@ class Bank_account:
             print('Bank is bankrupt.')
             return
         self.__loan_count+=1
-        self.__bank.remove_money(amount)
         self.__acc_balance+=amount
         self.__bank.add_loan(amount)
         self.__transactions.append(Transaction().loan(amount))
@@ -102,13 +103,5 @@ class Bank_account:
     
 
 
-# bank_account=Bank_account('savings','Muhammad Muttaqin', 'mdmuttaqin20@gmail.com','dhaka bangladesh','123456')
-# bank_account1=Bank_account('savings','md sabbir', 'sabir@gmail.com','dhaka bangladesh','123456')
-
-# bank_account.deposit(1000)
-# bank_account.withdraw(500)
-# bank_account.transfer(bank_account1.get_acc_no,200)
-# bank_account.get_transaction_history()
-# bank_account.take_loan(200)
 
         

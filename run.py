@@ -13,7 +13,7 @@ bank_acc=None
 
 sample_acc_1=Bank_account('current','rakib khan','rakib@gmail.com','dhaka')
 sample_acc_2=Bank_account('savings','md rohim','rohim@gmail.com','khulna')
-sample_acc_3=Bank_account('savings','sayem khan','rohim@gmail.com','sylhet')
+sample_acc_3=Bank_account('savings','sayem khan','sayem@gmail.com','sylhet')
 
 def verify_account_creation(acc):
     if acc==None:
@@ -26,6 +26,8 @@ def getName(acc):
         return ''
     else:
         return f'Welcome {acc.name},\n' 
+    
+    
 user_op="""
         1. Create account.
         2. Deposit.

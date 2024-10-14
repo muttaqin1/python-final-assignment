@@ -1,6 +1,6 @@
 
 class Bank:
-    __balance=0
+    __balance=10000
     __accounts=[]
     __total_loan=0
     __loan_enabled=True
@@ -88,7 +88,7 @@ class Bank:
         return True
     
     def delete_account(self,acc_no):
-        if not self.exists_account(acc_no)==None:
+        if self.exists_account(acc_no)==None:
             print("User doesnt exists!")
             return
         for account in Bank.__accounts:
