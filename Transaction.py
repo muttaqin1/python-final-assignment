@@ -1,22 +1,7 @@
-from abc import ABC
 from datetime import datetime
 
-class Transactions_interface(ABC):
-       
-    def deposit(self,amount):
-        raise NotImplementedError()
-    
-    def withdraw(self,amount):
-        raise NotImplementedError()
-    
-    def transfer(self,sender_acc_no, reciever_ac_no, amount):
-        raise NotImplementedError()
-    
-    def loan(self,amount):
-        raise NotImplementedError()
-    
 
-class Transaction(Transactions_interface):
+class Transaction:
 
     def __init__(self) -> None:
         self.type=None

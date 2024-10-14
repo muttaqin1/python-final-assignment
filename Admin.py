@@ -1,23 +1,25 @@
-from abc import ABC
+from Bank import Bank
 
-class Admin_interface(ABC):
-
-    def __init__(self,name,username,password) -> None:
-        self.name=name
+class Admin:
+    def __init__(self,username,password) -> None:
         self.username=username
         self.password=password
-    
-    def delete_user(self):
-        raise NotImplementedError()
-    
+        self.bank=Bank()
+
+    def delete_user(self,bank_account_no):
+        self.bank.delete_account(bank_account_no)
+
+
     def get_all_accounts(self):
-        raise NotImplementedError()
+        for account in self.bank.accounts():
+            print(f'Name: {account.name} \tAccount no: {account.get_acc_no}\tBalance: {account.get_acc_balance}\n')
     
     def get_total_bank_balance(self):
-        raise NotImplementedError()
-    
+        print(f'Total bank balance: {self.bank.get_balance}')
+
     def get_total_loan_amount(self):
-        raise NotImplementedError()
+        print(f'Total loan amount: {self.bank.get_total_loan}')
     
     def disable_loan(self):
-        raise NotImplementedError()
+        self.bank.set_loan_status(False)
+        print('Loan disabled!')
